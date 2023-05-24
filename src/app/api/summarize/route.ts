@@ -1,4 +1,4 @@
-import { OpenAI } from "langchain/llms/openai";
+import { OpenAIChat } from "langchain/llms/openai";
 import { loadSummarizationChain } from "langchain/chains";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { NextResponse } from "next/server";
@@ -8,7 +8,11 @@ export const runtime = "edge";
 export async function POST(request: Request) {
   const res = await request.json();
 
-  const llm = new OpenAI({ temperature: 0 });
+  const llm = new OpenAIChat({
+    temperature: 0,
+    openAIApiKey: res.api,
+    modelName: "gpt-3.5-turbo",
+  });
 
   const textSplitter = new RecursiveCharacterTextSplitter({
     chunkSize: 2000,

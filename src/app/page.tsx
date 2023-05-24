@@ -7,6 +7,7 @@ export default function Home() {
   const [text, setText] = useState("");
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
+  const [api, setApiKey] = useState("");
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -18,7 +19,7 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ text }),
+        body: JSON.stringify({ text, api }),
       });
       if (!res.ok) throw new Error(res.statusText);
 
@@ -35,12 +36,9 @@ export default function Home() {
     <div className="p-4">
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label
-            htmlFor="text"
-            className="block text-6xl text-center my-9 font-medium text-gray-700"
-          >
+          <div className="block text-6xl text-center my-9 font-medium text-gray-700">
             LangChain × Next.js Test
-          </label>
+          </div>
           <TextareaAutosize
             id="text"
             minRows={5}
@@ -48,6 +46,21 @@ export default function Home() {
             className="w-full block resize-none rounded-md border-2 border-gray-100 bg-gray-50 px-4 py-2"
             value={text}
             onChange={(e) => setText(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label
+            htmlFor="apiKey"
+            className="block mb-3 text-lg font-medium text-gray-700"
+          >
+            OpenAI API Key
+          </label>
+          <input
+            id="apiKey"
+            value={api}
+            className="w-full block resize-none rounded-md border-2 border-gray-100 bg-gray-50 px-4 py-2"
+            onChange={(e) => setApiKey(e.target.value)}
             required
           />
         </div>
