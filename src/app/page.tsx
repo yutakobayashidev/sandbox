@@ -39,7 +39,7 @@ export default function Home() {
             htmlFor="text"
             className="block text-6xl text-center my-9 font-medium text-gray-700"
           >
-            Langchain × Next.js Test
+            LangChain × Next.js Test
           </label>
           <TextareaAutosize
             id="text"
