@@ -8,10 +8,12 @@ export default function Home() {
   const [summary, setSummary] = useState("");
   const [loading, setLoading] = useState(false);
   const [api, setApiKey] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError(""); // Clear previous error
 
     try {
       const res = await fetch("/api/summarize", {
@@ -21,16 +23,23 @@ export default function Home() {
         },
         body: JSON.stringify({ text, api }),
       });
-      if (!res.ok) throw new Error(res.statusText);
 
       const data = await res.json();
+
+      if (!res.ok) throw new Error(data.error || res.statusText);
+
       setSummary(data.summary);
-    } catch (error) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
+      }
       console.error(error);
     } finally {
       setLoading(false);
     }
   };
+
+  const isButtonDisabled = () => !text || !api || loading;
 
   return (
     <div className="p-4">
@@ -66,8 +75,12 @@ export default function Home() {
         </div>
         <button
           type="submit"
-          className="py-2 px-4 rounded-md bg-blue-600 text-white"
-          disabled={loading}
+          className={`py-2 px-4 rounded-md text-white ${
+            isButtonDisabled()
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-blue-600 hover:bg-blue-700"
+          }`}
+          disabled={isButtonDisabled()}
         >
           {loading ? "Loading..." : "Summarize"}
         </button>
@@ -76,6 +89,11 @@ export default function Home() {
         <div className="mt-4 p-2 border border-gray-200 rounded-md">
           <h2 className="text-lg font-semibold text-gray-700">Summary</h2>
           <p className="mt-2 text-gray-700">{summary}</p>
+        </div>
+      )}
+      {error && (
+        <div className="mt-4 p-2 border border-red-500 bg-red-100 rounded-md">
+          <p className="text-red-700">{error}</p>
         </div>
       )}
     </div>

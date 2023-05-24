@@ -19,23 +19,30 @@ export async function POST(request: Request) {
     chunkOverlap: 100,
   });
 
-  if (!res.text) {
+  if (!res.text || !res.api) {
     return NextResponse.json({
-      error: "To use this endpoint, text is required",
+      error: "Required fields have not been filled in.",
     });
   }
 
-  const docs = await textSplitter.createDocuments([res.text]);
+  try {
+    const docs = await textSplitter.createDocuments([res.text]);
+    const chain = loadSummarizationChain(llm);
 
-  const chain = loadSummarizationChain(llm);
+    const summarizeResponse = await chain.call({
+      input_documents: docs,
+    });
+    const summary = summarizeResponse.text;
 
-  const summarizeResponse = await chain.call({
-    input_documents: docs,
-  });
-  const summary = summarizeResponse.text;
-
-  return new Response(JSON.stringify({ summary }), {
-    status: 200,
-    headers: { "content-type": "application/json" },
-  });
+    return new Response(JSON.stringify({ summary }), {
+      status: 200,
+      headers: { "content-type": "application/json" },
+    });
+  } catch (error) {
+    console.log(error);
+    return new Response(JSON.stringify({ error: "Server Error" }), {
+      status: 500,
+      headers: { "content-type": "application/json" },
+    });
+  }
 }
