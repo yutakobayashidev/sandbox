@@ -9,9 +9,11 @@ type Props = {
 export default function Meeting({ text }: Props) {
   const [data, setData] = useState("");
   const [api, setApiKey] = useState("");
+  const [isSummarizing, setIsSummarizing] = useState(false);
 
   const fetchData = async () => {
     setData("");
+    setIsSummarizing(true);
 
     const res = await fetch("/api/summarize", {
       method: "POST",
@@ -24,6 +26,7 @@ export default function Meeting({ text }: Props) {
     const data = res.body;
 
     if (!data) {
+      setIsSummarizing(false);
       return;
     }
 
@@ -41,6 +44,8 @@ export default function Meeting({ text }: Props) {
 
       setData((prev) => prev + chunkValue);
     }
+
+    setIsSummarizing(false);
   };
 
   return (
@@ -68,28 +73,30 @@ export default function Meeting({ text }: Props) {
       </div>
       <button
         onClick={fetchData}
-        disabled={!api} // button will be disabled if API key input is empty
+        disabled={!api || isSummarizing} // button will be disabled if API key input is empty or summarizing is in progress
         className={`py-2 px-4 rounded-md text-white ${
-          api
+          api && !isSummarizing
             ? "bg-blue-600 hover:bg-blue-700"
             : "bg-blue-200 cursor-not-allowed"
-        }"`}
+        }`}
       >
         Summarize
       </button>
-      <div className="mt-4 p-2 border border-gray-200 rounded-md">
-        <h2 className="text-lg font-semibold text-gray-700">Summary</h2>
-        <p className="mt-2 text-gray-700">
-          {data.split(/\n/).map((item, index) => {
-            return (
-              <Fragment key={index}>
-                {item}
-                <br />
-              </Fragment>
-            );
-          })}
-        </p>
-      </div>
+      {data && (
+        <div className="mt-4 p-2 border border-gray-200 rounded-md">
+          <h2 className="text-lg font-semibold text-gray-700">Summary</h2>
+          <p className="mt-2 text-gray-700">
+            {data.split(/\n/).map((item, index) => {
+              return (
+                <Fragment key={index}>
+                  {item}
+                  <br />
+                </Fragment>
+              );
+            })}
+          </p>
+        </div>
+      )}
     </div>
   );
 }
