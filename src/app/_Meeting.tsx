@@ -12,8 +12,8 @@ export default function Meeting({ text }: Props) {
   const [isSummarizing, setIsSummarizing] = useState(false);
 
   const fetchData = async () => {
-    setData("");
     setIsSummarizing(true);
+    setData("");
 
     const res = await fetch("/api/summarize", {
       method: "POST",
@@ -83,17 +83,20 @@ export default function Meeting({ text }: Props) {
         Summarize
       </button>
       {data && (
-        <div className="mt-4 p-2 border border-gray-200 rounded-md">
+        <div className="mt-4 p-2 border border-gray-200 rounded-md relative">
           <h2 className="text-lg font-semibold text-gray-700">Summary</h2>
           <p className="mt-2 text-gray-700">
-            {data.split(/\n/).map((item, index) => {
-              return (
-                <Fragment key={index}>
-                  {item}
-                  <br />
-                </Fragment>
-              );
-            })}
+            <span style={{ whiteSpace: "pre-line" }}>
+              {data}
+              {isSummarizing && (
+                <span className="inline-block align-baseline">
+                  <span
+                    className="bg-black rounded-full ml-3 inline-block"
+                    style={{ width: "15px", height: "15px" }}
+                  />
+                </span>
+              )}
+            </span>
           </p>
         </div>
       )}
