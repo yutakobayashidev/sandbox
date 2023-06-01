@@ -16,6 +16,7 @@ async function runLLMChain(text: string, api: string) {
   const chatStreaming = new ChatOpenAI({
     modelName: "gpt-3.5-turbo",
     streaming: true,
+    maxTokens: -1,
     temperature: 0,
     openAIApiKey: api,
     callbacks: [
@@ -28,7 +29,7 @@ async function runLLMChain(text: string, api: string) {
           await writer.ready;
           await writer.close();
         },
-        handleLLMError: async (e) => {
+        async handleLLMError(e) {
           await writer.ready;
           console.log("handleLLMError Error: ", e);
           await writer.abort(e);
@@ -37,22 +38,38 @@ async function runLLMChain(text: string, api: string) {
     ],
   });
 
-  const prompt = new PromptTemplate({
-    template: `Summarize this in Japanese (日本語) language:
-  "{text}"
-  Concise summaries with bullet points:`,
+  const prompt_template =
+    "次の文章の簡潔に議員のフルネームや時刻などは省略せず要約を書いてください: {text} 簡潔な日本語の要約: ";
+
+  const RPROMPT = new PromptTemplate({
+    template: prompt_template,
     inputVariables: ["text"],
   });
 
+  const refinePromptTemplate = `あなたの仕事は最終的な要約を作ることです
+  途中までの要約があります: "{existing_answer}"
+  必要に応じて下記の文章を使い、さらに良い要約を作成してください
+  与えられた文章が有用でない場合、途中までの文章を返してください
+------------
+"{text}"
+------------
+
+与えられた文章を踏まえて、日本語で要約を改善してください
+REFINED SUMMARY:`;
+
+  const REFINE_PROMPT = new PromptTemplate({
+    template: refinePromptTemplate,
+    inputVariables: ["existing_answer", "text"],
+  });
+
   const chain = loadSummarizationChain(chatStreaming, {
-    type: "map_reduce",
-    combineMapPrompt: prompt,
-    combinePrompt: prompt,
+    type: "refine",
+    refinePrompt: REFINE_PROMPT,
+    questionPrompt: RPROMPT,
   });
 
   const textSplitter = new RecursiveCharacterTextSplitter({
-    chunkSize: 2000,
-    chunkOverlap: 100,
+    chunkSize: 3000,
   });
 
   const docs = await textSplitter.createDocuments([text]);
@@ -67,5 +84,9 @@ export async function POST(request: Request) {
   const body = await request.json();
 
   const stream = runLLMChain(body.text, body.api);
-  return new Response(await stream);
+  return new Response(await stream, {
+    headers: {
+      "Content-Type": "text/event-stream",
+    },
+  });
 }
