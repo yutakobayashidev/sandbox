@@ -5,7 +5,7 @@ async function getMeeting() {
     "https://kokkai.ndl.go.jp/api/meeting?from=2023-05-01&recordPacking=json",
     {
       next: { revalidate: 3600 },
-    }
+    },
   );
 
   const data = await response.json();
