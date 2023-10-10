@@ -3,7 +3,9 @@ import { CountryTypes } from "@/types";
 export default function Country({ country }: { country: CountryTypes }) {
   return (
     <>
-      <div className={`p-6 rounded-lg shadow-md flex items-center space-x-6`}>
+      <div
+        className={`p-6 rounded-lg shadow-md md:flex items-center space-x-6`}
+      >
         <img
           src={country.flags.png}
           alt={country.flags.alt}

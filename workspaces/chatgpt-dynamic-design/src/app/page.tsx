@@ -19,7 +19,7 @@ export default function Chat() {
   });
 
   return (
-    <div className="mx-auto py-12 max-w-4xl">
+    <div className="mx-auto py-12 px-3 max-w-4xl">
       {messages.map((m, i) => {
         const correspondingData = data
           ? data.find((d: any) => d.index === i)
