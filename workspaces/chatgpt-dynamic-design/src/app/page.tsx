@@ -4,7 +4,7 @@ import { useChat } from "ai/react";
 import MessageItem from "@/components/message";
 import type { Message } from "ai";
 
-export const initialMessages: Message[] = [
+const initialMessages: Message[] = [
   {
     role: "assistant",
     id: "0",
