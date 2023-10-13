@@ -2,21 +2,30 @@
 
 import { useChat } from "ai/react";
 import MessageItem from "@/components/message";
-import type { Message } from "ai";
+import { Message, nanoid } from "ai";
+import { useState } from "react";
 
 const initialMessages: Message[] = [
   {
     role: "assistant",
-    id: "0",
+    id: nanoid(),
     content:
       "こんにちは、Function Callingの結果をクライアントに渡しレンダリングするテストです。試しに、東京の天気や国の説明をお願いしてみてください。",
   },
 ];
 
 export default function Chat() {
-  const { data, messages, input, handleInputChange, handleSubmit } = useChat({
-    initialMessages,
-  });
+  const [key, setAPIkey] = useState<string>("");
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAPIkey(event.target.value);
+  };
+
+  const { data, messages, input, handleInputChange, handleSubmit, isLoading } =
+    useChat({
+      initialMessages,
+      body: { key },
+    });
 
   return (
     <div className="mx-auto py-12 px-3 max-w-4xl">
@@ -34,6 +43,13 @@ export default function Chat() {
           onChange={handleInputChange}
         />
       </form>
+      <input
+        type="text"
+        value={key}
+        onChange={handleChange}
+        placeholder="OpenAI API Key"
+        className="w-full"
+      />
     </div>
   );
 }
