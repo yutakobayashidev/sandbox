@@ -10,7 +10,7 @@ const SYSTEM_PROMPT =
 
 export const command = {
   data: new SlashCommandBuilder()
-    .setName("run")
+    .setName("keigo")
     .setDescription("文章の敬語変換を提供します。")
     .addStringOption((option) =>
       option
