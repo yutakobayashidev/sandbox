@@ -2,7 +2,8 @@
   "name": "text-lint",
   "module": "index.ts",
   "scripts": {
-    "start": "tsx main.ts"
+    "start": "tsx main.ts",
+    "command-deploy": "tsx deploy-commands.ts"
   },
   "dependencies": {
     "discord.js": "^14.13.0",

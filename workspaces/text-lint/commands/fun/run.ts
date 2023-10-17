@@ -31,7 +31,7 @@ export const command = {
           )}`,
         },
       ],
-      model: "gpt-3.5-turbo",
+      model: "gpt-4",
     });
 
     await interaction.followUp(
