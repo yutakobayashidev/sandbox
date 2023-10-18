@@ -11,11 +11,11 @@ const SYSTEM_PROMPT =
 export const command = {
   data: new SlashCommandBuilder()
     .setName("katakana")
-    .setDescription("文章の敬語変換を提供します。")
+    .setDescription("横文字大好きな過激派日本人に変換します。")
     .addStringOption((option) =>
       option
         .setName("文字列")
-        .setDescription("敬語変換を行いたい文字列を指定します")
+        .setDescription("横文字変換を行いたい文字列を指定します")
         .setRequired(true)
     ),
   async execute(interaction: ChatInputCommandInteraction) {
@@ -26,7 +26,7 @@ export const command = {
         { role: "system", content: SYSTEM_PROMPT },
         {
           role: "user",
-          content: `敬語に変換するテキスト： ${interaction.options.getString(
+          content: `カタカナに変換するテキスト： ${interaction.options.getString(
             "文字列"
           )}`,
         },
