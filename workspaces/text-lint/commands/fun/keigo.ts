@@ -15,7 +15,7 @@ export const command = {
     .addStringOption((option) =>
       option
         .setName("文字列")
-        .setDescription("敬語変換を行いたい文字列を指定します")
+        .setDescription("敬語に変換いたす文章を決定いたします")
         .setRequired(true)
     ),
   async execute(interaction: ChatInputCommandInteraction) {
