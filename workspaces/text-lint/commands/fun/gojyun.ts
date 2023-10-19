@@ -12,7 +12,7 @@ export const command = {
   data: new SlashCommandBuilder()
     .setName("wordorder")
     .setDescription(
-      "日本語の語順S,O,Vを、英語の語順S,V,Oに変換します。\n例:私はりんごを食べる -> 私は食べるりんご"
+      "変換します日本語の語順S,O,Vを、英語の語順S,V,Oに。\n例:私はりんごを食べる -> 私は食べるりんご"
     )
     .addStringOption((option) =>
       option

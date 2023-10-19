@@ -11,7 +11,7 @@ const SYSTEM_PROMPT =
 export const command = {
   data: new SlashCommandBuilder()
     .setName("chinese")
-    .setDescription("エセ中国語に変換します。")
+    .setDescription("君文字列、我変換偽中国語。")
     .addStringOption((option) =>
       option
         .setName("文字列")
