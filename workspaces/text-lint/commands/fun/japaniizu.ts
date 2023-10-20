@@ -17,7 +17,7 @@ export const command = {
     .addStringOption((option) =>
       option
         .setName("文字列")
-        .setDescription("Taipu yua fureizu.")
+        .setDescription("Taipu yuaa fureizu.")
         .setRequired(true)
     ),
   async execute(interaction: ChatInputCommandInteraction) {
