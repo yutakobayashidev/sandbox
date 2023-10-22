@@ -1,4 +1,4 @@
-# text-lint
+# kotobade-asobou-discord
 
 To install dependencies:
 

@@ -1,5 +1,5 @@
 {
-  "name": "text-lint",
+  "name": "kotobade-asobou-discord",
   "module": "index.ts",
   "scripts": {
     "start": "tsx main.ts",
@@ -10,7 +10,8 @@
     "dotenv": "^16.3.1",
     "openai": "^4.12.3",
     "tsx": "^3.13.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "kotobade-asobou": "workspace:^"
   },
   "type": "module"
 }

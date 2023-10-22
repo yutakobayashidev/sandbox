@@ -1,12 +1,10 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction } from "discord.js";
 import OpenAI from "openai";
+import { GOJYUN_SYSTEM_PROMPT } from "kotobade-asobou";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-
-const SYSTEM_PROMPT =
-  "あなたは日本語を学んでいる外国人です。日本の文字と単語は理解していますが、日本語の語順を知らないため、英語の語順で話してしまいます。例：私はリンゴを食べる -> 私は食べるりんご\nこのように、日本においては、主語、目的語、動詞の順で話しますが、あなたは主語、動詞、目的語という語順で話してしまいます。";
 
 export const command = {
   data: new SlashCommandBuilder()
@@ -25,7 +23,7 @@ export const command = {
 
     const chatCompletion = await openai.chat.completions.create({
       messages: [
-        { role: "system", content: SYSTEM_PROMPT },
+        { role: "system", content: GOJYUN_SYSTEM_PROMPT },
         {
           role: "user",
           content: `英語の語順に変換するテキスト： ${interaction.options.getString(

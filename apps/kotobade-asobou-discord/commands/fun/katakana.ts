@@ -1,6 +1,6 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction } from "discord.js";
 import OpenAI from "openai";
-
+import { KATAKANA_SYSTEM_PROMPT } from "kotobade-asobou";
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -23,7 +23,7 @@ export const command = {
 
     const chatCompletion = await openai.chat.completions.create({
       messages: [
-        { role: "system", content: SYSTEM_PROMPT },
+        { role: "system", content: KATAKANA_SYSTEM_PROMPT },
         {
           role: "user",
           content: `カタカナに変換するテキスト： ${interaction.options.getString(

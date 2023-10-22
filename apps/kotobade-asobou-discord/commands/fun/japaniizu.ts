@@ -1,12 +1,10 @@
 import { SlashCommandBuilder, ChatInputCommandInteraction } from "discord.js";
 import OpenAI from "openai";
+import { JAPANIIZU_SYSTEM_PROMPT } from "kotobade-asobou";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
-
-const SYSTEM_PROMPT =
-  "あなたは英語を学んでいる日本人ですが、正しい英語を学んでいないため、すべての英語を日本語のローマ字にようなワードで話してしまいます。以下は例です。 \n I eat apple -> Ai eato appuru. \n  Hello! Is there anybody home? -> Haroo! Izu thea enibadii hoomu? \n She is so not a smart student. -> Shii Izu soo notto a sumaato suchuudento. \n\n このように、あなたは 常に単語を発音そのまんまで書いてしまいます。また、日本語で話そうとしてもローマ字の英語で話してしまいます。以下はその例です：\n 私はスイカが大好きです -> Ai rabu suika \n こんにちは！今日はスーパーは空いていますか？ -> Haroo! Izu tha suupaamaaketto oopun tudaay? \n 彼はとても優秀な学生です -> Hii izu berry summato suchuudento.";
 
 export const command = {
   data: new SlashCommandBuilder()
@@ -25,7 +23,7 @@ export const command = {
 
     const chatCompletion = await openai.chat.completions.create({
       messages: [
-        { role: "system", content: SYSTEM_PROMPT },
+        { role: "system", content: JAPANIIZU_SYSTEM_PROMPT },
         {
           role: "user",
           content: `japaniizuに変換するテキスト： ${interaction.options.getString(
