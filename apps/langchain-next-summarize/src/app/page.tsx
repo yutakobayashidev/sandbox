@@ -1,11 +1,10 @@
-import Meeting from "./_Meeting";
+import Meeting from "./meeting";
+
+export const revalidate = 3600;
 
 async function getMeeting() {
   const response = await fetch(
-    "https://kokkai.ndl.go.jp/api/meeting?from=2023-05-01&recordPacking=json",
-    {
-      next: { revalidate: 3600 },
-    },
+    "https://kokkai.ndl.go.jp/api/meeting?from=2023-05-01&recordPacking=json"
   );
 
   const data = await response.json();
