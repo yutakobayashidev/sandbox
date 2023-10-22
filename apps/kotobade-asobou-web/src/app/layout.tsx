@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Toaster from "./toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +26,10 @@ export default function RootLayout({
         type="image/png"
         href="https://twemoji.maxcdn.com/v/13.0.2/72x72/1f30f.png"
       />
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {children}
+        <Toaster />
+      </body>
     </html>
   );
 }
