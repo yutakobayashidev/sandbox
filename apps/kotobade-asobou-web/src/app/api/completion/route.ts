@@ -60,7 +60,7 @@ export async function POST(req: Request) {
     });
 
     const { limit, remaining, reset, success } = await ratelimit.limit(
-      `capitalens_ratelimit_${ip}`
+      `kotobadeasobou_ratelimit_${ip}`
     );
 
     if (!success) {

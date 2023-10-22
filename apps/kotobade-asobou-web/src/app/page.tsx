@@ -10,8 +10,11 @@ import {
 } from "@/components/ui/select";
 import TextareaAutosize from "react-textarea-autosize";
 import { toast } from "sonner";
+import { useState } from "react";
 
 export default function Completion() {
+  const [type, setType] = useState("chinese");
+
   const {
     completion,
     input,
@@ -40,7 +43,10 @@ export default function Completion() {
   return (
     <div className="mx-auto py-12 space-y-3 max-w-3xl">
       <h1 className="text-5xl mb-10 text-center font-bold">🌏 言葉で遊ぼう</h1>
-      <Select defaultValue="chinese">
+      <Select
+        onValueChange={(newVibe: string) => setType(newVibe)}
+        defaultValue={type}
+      >
         <SelectTrigger className="w-full">
           <SelectValue placeholder="選択してください" />
         </SelectTrigger>
