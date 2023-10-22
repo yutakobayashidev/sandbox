@@ -25,7 +25,7 @@ export default function Completion() {
   } = useCompletion({
     api: "/api/completion",
     body: {
-      type: "chinese",
+      type: type,
     },
     onResponse: (res) => {
       if (res.status === 429) {
