@@ -8,7 +8,7 @@ const client = new Client({
 });
 
 client.on("ready", async () => {
-  if (client?.user) console.log(`${client.user.username} is ready!`);
+  if (client.user) console.log(`${client.user.username} is ready!`);
 });
 
 client.on("messageCreate", async (message) => {
