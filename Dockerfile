@@ -14,4 +14,5 @@ ENV NODE_ENV production
 
 # monorepo の app をホスティングするための切り替え
 WORKDIR /usr/src/app/apps/fix-twitter-opengraph
+RUN bun run compile
 CMD [ "bun", "run", "start" ]
