@@ -48,13 +48,23 @@ export const createEmbeds = async (content: string): Promise<APIEmbed[]> => {
       return [];
     }
 
-    const { text, user, photos, video, likes } = response;
+    const {
+      text,
+      user,
+      photos,
+      video,
+      likes,
+      in_reply_to_screen_name,
+      in_reply_to_url,
+    } = response;
 
     const photoUrls = photos.map((photo) => photo.url);
     if (video) photoUrls.unshift(video.poster);
 
+    const description = `[Replying to @${in_reply_to_screen_name}](${in_reply_to_url})\n\n${text}`;
+
     const embed: APIEmbed = {
-      description: text,
+      description,
       color: 0x1da1f2,
       image: photoUrls.length > 0 ? { url: photoUrls[0] } : undefined,
       author: {

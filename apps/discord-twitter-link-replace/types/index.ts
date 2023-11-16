@@ -3,6 +3,9 @@ type Indices = [number, number];
 export interface TweetData {
   __typename: "Tweet";
   lang: "en";
+  in_reply_to_screen_name?: string;
+  in_reply_to_status_id_str?: string;
+  in_reply_to_user_id_str?: string;
   favorite_count: number;
   possibly_sensitive: boolean;
   created_at: string;
