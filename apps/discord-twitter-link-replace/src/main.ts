@@ -57,13 +57,6 @@ export const createEmbeds = async (content: string): Promise<APIEmbed[]> => {
       description: text,
       color: 0x1da1f2,
       image: photoUrls.length > 0 ? { url: photoUrls[0] } : undefined,
-      fields: [
-        {
-          name: "Likes",
-          value: likes.toLocaleString(),
-          inline: true,
-        },
-      ],
       author: {
         name: user.name + `(@${user.screen_name})`,
         url: `https://twitter.com/${user.screen_name}`,
@@ -75,6 +68,16 @@ export const createEmbeds = async (content: string): Promise<APIEmbed[]> => {
         text: "X",
       },
     };
+
+    if (likes > 0) {
+      embed.fields = [
+        {
+          name: "Likes",
+          value: likes.toLocaleString(),
+          inline: true,
+        },
+      ];
+    }
 
     return embed;
   });
