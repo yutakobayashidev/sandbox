@@ -1,6 +1,6 @@
 FROM oven/bun
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/apps/fix-twitter-opengraph
 
 COPY package*.json bun.lockb ./
 RUN bun install
