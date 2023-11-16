@@ -7,8 +7,16 @@ import {
   APIEmbed,
 } from "discord.js";
 import { fetchTweet } from "../lib/fetchTweet";
+import http from "http";
 
 dotenv.config();
+
+http
+  .createServer(function (req, res) {
+    res.write("OK");
+    res.end();
+  })
+  .listen(8080);
 
 const client = new Client({
   intents: [
