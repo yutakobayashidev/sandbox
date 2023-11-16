@@ -1,8 +1,9 @@
 {
   "name": "discord-twitter-link-replace",
-  "module": "index.ts",
   "scripts": {
-    "start": "tsx src/main.ts"
+    "dev": "tsx src/main.ts",
+    "start": "node build/src/main.js",
+    "compile": "tsc -p ."
   },
   "dependencies": {
     "discord.js": "^14.14.1",
@@ -12,5 +13,5 @@
     "typescript": "^5.0.0",
     "tsx": "^3.13.0"
   },
-  "type": "module"
+  "type": "commonjs"
 }
