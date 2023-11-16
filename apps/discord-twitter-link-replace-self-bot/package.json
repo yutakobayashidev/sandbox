@@ -1,5 +1,5 @@
 {
-  "name": "discord-twitter-link-replace",
+  "name": "discord-twitter-link-replace-self-bot",
   "module": "index.ts",
   "scripts": {
     "start": "tsx src/main.ts"
