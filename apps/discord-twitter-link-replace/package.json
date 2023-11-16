@@ -1,0 +1,16 @@
+{
+  "name": "discord-twitter-link-replace",
+  "module": "index.ts",
+  "scripts": {
+    "start": "tsx src/main.ts"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "tsx": "^3.13.0"
+  },
+  "type": "module"
+}
