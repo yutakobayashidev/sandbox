@@ -1,2 +1,4 @@
-language="nodejs"
-run="npm install -g bun && bun i && cd apps/fix-twitter-opengraph && bun compile && bun start"
+language = "nodejs";
+onBoot = "sh bun.cfg/onBoot.sh";
+run =
+  "sh bun.cfg/preload.sh && bun i && cd apps/fix-twitter-opengraph && bun compile && bun start";
