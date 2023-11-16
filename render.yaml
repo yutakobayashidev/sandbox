@@ -1,0 +1,8 @@
+services:
+  - name: fix-twitter-opengraph
+    type: web
+    runtime: docker
+    repo: https://github.com/yutakobayashidev/sandbox
+    branch: main
+    autoDeploy: true
+    dockerfilePath: docker/Dockerfile.app
