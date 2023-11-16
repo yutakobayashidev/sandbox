@@ -10,6 +10,7 @@ interface TweetDataSubset {
   likes: number;
   in_reply_to_screen_name?: string;
   in_reply_to_url?: string;
+  in_reply_to_status_id_str?: string;
 }
 
 // Originally authored by LFades for react-tweet
@@ -37,7 +38,9 @@ export async function fetchTweet(id: string): Promise<TweetDataSubset> {
     entities,
     favorite_count,
     in_reply_to_screen_name,
+    in_reply_to_status_id_str,
   } = data;
+
   const text = normalizeText(data);
 
   return {
@@ -48,6 +51,7 @@ export async function fetchTweet(id: string): Promise<TweetDataSubset> {
     video,
     media: entities.media,
     in_reply_to_screen_name,
+    in_reply_to_status_id_str,
     in_reply_to_url: data.in_reply_to_screen_name
       ? getInReplyToUrl(data)
       : undefined,
