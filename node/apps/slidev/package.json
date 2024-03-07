@@ -5,12 +5,16 @@
   "scripts": {
     "build": "slidev build",
     "dev": "slidev --open",
-    "export": "slidev export"
+    "export": "slidev export",
+    "deploy:pages": "wrangler pages deploy ./dist"
   },
   "dependencies": {
     "@slidev/cli": "^0.48.0-beta.22",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",
     "vue": "^3.4.21"
+  },
+  "devDependencies": {
+    "wrangler": "^3.27.0"
   }
 }
