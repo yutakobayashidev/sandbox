@@ -1,6 +1,7 @@
 {
   "name": "kotobade-asobou-discord",
   "module": "index.ts",
+  "type": "module",
   "scripts": {
     "start": "tsx main.ts",
     "command-deploy": "tsx deploy-commands.ts"
@@ -12,6 +13,5 @@
     "tsx": "^3.13.0",
     "typescript": "5.3.3",
     "kotobade-asobou": "workspace:^"
-  },
-  "type": "module"
+  }
 }
