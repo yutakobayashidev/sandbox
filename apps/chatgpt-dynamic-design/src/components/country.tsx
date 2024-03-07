@@ -2,7 +2,7 @@ import { CountryTypes } from "@/types";
 
 export default function Country({ country }: { country: CountryTypes }) {
   return (
-    <>
+    <div>
       <div
         className={`p-6 rounded-lg shadow-md md:flex items-center space-x-6`}
       >
@@ -56,6 +56,6 @@ export default function Country({ country }: { country: CountryTypes }) {
           REST Countries
         </a>
       </span>
-    </>
+    </div>
   );
 }

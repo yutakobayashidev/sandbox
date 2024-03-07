@@ -1,3 +1,6 @@
+import { z } from "zod";
+import { languageSchema, periodSchema } from "./schema";
+
 export type WeatherInfo = {
   id: number;
   name: string;
@@ -131,3 +134,20 @@ export type CountryTypes = {
     regex: string;
   };
 };
+
+export type RepoInfo = {
+  repo_id: string;
+  repo_name: string;
+  primary_language: string;
+  description: string;
+  stars: string;
+  forks: string;
+  pull_requests: string;
+  pushes: string;
+  total_score: string;
+  contributor_logins: string;
+  collection_names: string;
+};
+
+export type PeriodType = z.infer<typeof periodSchema>;
+export type LanguageType = z.infer<typeof languageSchema>;

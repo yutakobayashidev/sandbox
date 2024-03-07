@@ -2,7 +2,7 @@ import { WeatherInfo } from "@/types";
 
 export default function Weather({ weather }: { weather: WeatherInfo }) {
   return (
-    <>
+    <div>
       <div className="flex items-center justify-between rounded-2xl bg-gradient-to-r from-blue-500 via-blue-300 to-cyan-400 p-6 text-white">
         <div>
           <h1 className="text-3xl">{Math.round(weather.main.temp)} ℃</h1>
@@ -24,6 +24,6 @@ export default function Weather({ weather }: { weather: WeatherInfo }) {
           OpenWeatherMap
         </a>
       </span>
-    </>
+    </div>
   );
 }
