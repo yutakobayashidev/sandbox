@@ -306,8 +306,6 @@ async function submitUserMessage(userInput: string, apiKey: string) {
 
           const session = await auth();
 
-          console.log(session);
-
           if (!session) {
             return <NoLogin username={username} repo={repo} />;
           }
