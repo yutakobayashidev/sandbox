@@ -3,12 +3,12 @@ name: Code quality
 on:
   push:
     paths:
-      - "apps/**"
-      - "packages/**"
+      - "node/apps/**"
+      - "node/packages/**"
   pull_request:
     paths:
-      - "apps/**"
-      - "packages/**"
+      - "node/apps/**"
+      - "node/packages/**"
 
 jobs:
   quality:
