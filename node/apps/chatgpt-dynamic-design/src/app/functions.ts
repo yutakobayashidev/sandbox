@@ -1,4 +1,3 @@
-import { auth } from "@/auth";
 import { LanguageType, PeriodType, RepoInfo } from "@/types";
 import { Octokit } from "octokit";
 
@@ -92,15 +91,10 @@ export async function forkRepository({
 }) {
   const octokit = new Octokit({ auth: accessToken });
 
-  const session = await auth();
-
-  const isSameUser = session?.user.username === username;
-  const orgName = isSameUser ? undefined : organization;
-
   const res = await octokit.request("POST /repos/{owner}/{repo}/forks", {
     owner: username,
     repo: repo,
-    organization: orgName,
+    organization,
   });
 
   return res;
