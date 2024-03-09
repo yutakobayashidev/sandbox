@@ -3,15 +3,22 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "start": "tsx main.ts",
-    "command-deploy": "tsx deploy-commands.ts"
+    "dev": "wrangler dev src/index.ts --port 8989",
+    "deploy": "wrangler deploy --minify src/index.ts",
+    "command-deploy": "tsx scripts/register.ts"
   },
   "dependencies": {
-    "discord.js": "^14.13.0",
+    "@cloudflare/workers-types": "^4.20240208.0",
+    "discord-api-types": "^0.37.56",
+    "discord-interactions": "^3.4.0",
     "dotenv": "^16.3.1",
-    "openai": "^4.12.3",
+    "hono": "^4.0.4",
+    "kotobade-asobou": "workspace:^",
+    "openai": "^4.28.4",
     "tsx": "^3.13.0",
-    "typescript": "5.3.3",
-    "kotobade-asobou": "workspace:^"
+    "typescript": "5.3.3"
+  },
+  "devDependencies": {
+    "wrangler": "^3.27.0"
   }
 }
