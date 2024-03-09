@@ -45,6 +45,7 @@ const handler = async ({
   if (chatCompletion.choices[0].message.content) {
     await putContentCache({
       command: WORDORDER_COMMAND_NAME,
+      original: (intentObj.data as any)?.options[0].value,
       text: chatCompletion.choices[0].message.content,
       ctx,
     });

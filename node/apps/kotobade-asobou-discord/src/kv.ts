@@ -18,10 +18,12 @@ export async function putContentCache({
   ctx,
   command,
   text,
+  original,
 }: {
   command: string;
   text: string;
+  original: string;
   ctx: InternalContext;
 }) {
-  return ctx.kv.put(`${command}:${text}`, text);
+  return ctx.kv.put(`${command}:${original}`, text);
 }
