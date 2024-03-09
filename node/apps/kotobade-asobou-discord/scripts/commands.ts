@@ -79,7 +79,7 @@ export const commands: RESTPostAPIApplicationCommandsJSONBody[] = [
     ],
   },
   {
-    name: "syogakusei",
+    name: "syogakuse",
     description: "簡単な言葉だけで話そう。",
     options: [
       {

@@ -6,7 +6,7 @@ import {
   HEIAN_SYSTEM_PROMPT,
   JAPANIIZU_SYSTEM_PROMPT,
   KATAKANA_SYSTEM_PROMPT,
-  SYOGAKUSEI_SYSTEM_PROMPT,
+  SYOGAKUSE_SYSTEM_PROMPT,
   WIRED_JAPANESE_SYSTEM_PROMPT,
   KEIGO_SYSTEM_PROMPT,
 } from "kotobade-asobou";
@@ -38,8 +38,8 @@ function get_type(type: string) {
       return KATAKANA_SYSTEM_PROMPT;
     case "keigo":
       return KEIGO_SYSTEM_PROMPT;
-    case "syogakusei":
-      return SYOGAKUSEI_SYSTEM_PROMPT;
+    case "syogakuse":
+      return SYOGAKUSE_SYSTEM_PROMPT;
     case "wired_japanese":
       return WIRED_JAPANESE_SYSTEM_PROMPT;
     default:

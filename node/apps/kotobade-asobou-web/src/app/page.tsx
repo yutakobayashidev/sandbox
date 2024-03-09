@@ -57,7 +57,7 @@ export default function Completion() {
           <SelectItem value="japaniizu">Japaniizu</SelectItem>
           <SelectItem value="katakana">カタカナ語</SelectItem>
           <SelectItem value="keigo">敬語変換</SelectItem>
-          <SelectItem value="syogakusei">簡単な言葉で話す</SelectItem>
+          <SelectItem value="syogakuse">簡単な言葉で話す</SelectItem>
           <SelectItem value="wired_japanese">怪しい日本語</SelectItem>
         </SelectContent>
       </Select>

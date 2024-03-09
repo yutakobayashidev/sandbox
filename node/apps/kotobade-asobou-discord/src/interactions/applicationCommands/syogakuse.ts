@@ -4,7 +4,7 @@ import {
 } from "discord-api-types/v10";
 import { ApplicationCommandObj } from "@/interactions/handleApplicationCommands";
 import { InternalContext } from "@/config";
-import { SYOGAKUSEI_SYSTEM_PROMPT } from "kotobade-asobou";
+import { SYOGAKUSE_SYSTEM_PROMPT } from "kotobade-asobou";
 
 const handler = async ({
   intentObj,
@@ -15,7 +15,7 @@ const handler = async ({
 }): Promise<APIInteractionResponseChannelMessageWithSource> => {
   const chatCompletion = await ctx.openai.chat.completions.create({
     messages: [
-      { role: "system", content: SYOGAKUSEI_SYSTEM_PROMPT },
+      { role: "system", content: SYOGAKUSE_SYSTEM_PROMPT },
       {
         role: "user",
         content: `簡単な言葉に変換するテキスト： ${
@@ -40,6 +40,6 @@ const handler = async ({
 };
 
 export default {
-  commandName: "syogakusei",
+  commandName: "syogakuse",
   handler,
 };

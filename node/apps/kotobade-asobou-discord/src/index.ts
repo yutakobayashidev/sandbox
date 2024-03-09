@@ -15,7 +15,7 @@ import engurishuCommand from "@/interactions/applicationCommands/engurishu";
 import chineseCommand from "@/interactions/applicationCommands/chinese";
 import heianCommand from "@/interactions/applicationCommands/heian";
 import katakanaCommand from "@/interactions/applicationCommands/katakana";
-import syogakuseiCommand from "@/interactions/applicationCommands/syogakusei";
+import syogakuseCommand from "@/interactions/applicationCommands/syogakuse";
 import wordorderCommand from "@/interactions/applicationCommands/wordorder";
 import { inject } from "@/middleware/inject";
 
@@ -45,7 +45,7 @@ app.post("/interaction", verifyDiscordInteraction, async (c) => {
                       heianCommand,
                       katakanaCommand,
                       keigoCommand,
-                      syogakuseiCommand,
+                      syogakuseCommand,
                       wordorderCommand,
                     ],
                   })
