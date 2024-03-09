@@ -38,7 +38,7 @@ pnpm run deploy
 以下のようなフォーマットでエンドポイントを Discord に登録します。
 
 ```bash
-[任意のアドレス].workers.dev/interaction
+https://{任意のアドレス}.workers.dev/interaction
 ```
 
 ![alt text](./docs/image.png)
