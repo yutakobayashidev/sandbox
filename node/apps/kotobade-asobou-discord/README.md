@@ -32,3 +32,13 @@ Cloudflare Workers にデプロイします。
 ```bash
 pnpm run deploy
 ```
+
+4. エンドポイントの登録
+
+以下のようなフォーマットでエンドポイントを Discord に登録します。
+
+```bash
+[任意のアドレス].workers.dev/interaction
+```
+
+![alt text](./docs/image.png)
