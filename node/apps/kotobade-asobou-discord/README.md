@@ -11,10 +11,10 @@
 
 1. 環境変数の設定
 
-`.env.vars`を作成して適切な値を割り当てます。
+`.dev.vars`を作成して適切な値を割り当てます。
 
 ```bash
-cp .env.vars.env .env.vars
+cp .dev.vars.example .dev.vars
 ```
 
 2. コマンドの登録
