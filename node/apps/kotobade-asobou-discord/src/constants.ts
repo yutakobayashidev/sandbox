@@ -1,6 +1,6 @@
 export const AYASII_COMMAND_NAME = "ayasii_jp";
 
-export const CHINESE_COMMAND_NAME = "ayasii_jp";
+export const CHINESE_COMMAND_NAME = "chinese";
 
 export const ENGURISHU_COMMAND_NAME = "engurishu";
 
