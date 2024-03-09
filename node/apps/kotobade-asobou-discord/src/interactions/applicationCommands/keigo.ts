@@ -8,12 +8,12 @@ import { KEIGO_SYSTEM_PROMPT } from "kotobade-asobou";
 
 const handler = async ({
   intentObj,
-  clients,
+  ctx,
 }: {
   intentObj: ApplicationCommandObj;
-  clients: InternalContext;
+  ctx: InternalContext;
 }): Promise<APIInteractionResponseChannelMessageWithSource> => {
-  const chatCompletion = await clients.openai.chat.completions.create({
+  const chatCompletion = await ctx.openai.chat.completions.create({
     messages: [
       { role: "system", content: KEIGO_SYSTEM_PROMPT },
       {

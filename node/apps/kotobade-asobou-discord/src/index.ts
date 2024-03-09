@@ -37,7 +37,7 @@ app.post("/interaction", verifyDiscordInteraction, async (c) => {
                 return c.json(
                   await handleApplicationCommands({
                     intentObj: body,
-                    clients: c.get("internal"),
+                    ctx: c.get("internal"),
                     commands: [
                       ayasiiCommand,
                       chineseCommand,

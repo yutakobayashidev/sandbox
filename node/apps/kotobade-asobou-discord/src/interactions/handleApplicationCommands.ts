@@ -10,16 +10,16 @@ export type ApplicationCommandObj = APIBaseInteraction<
 
 export const handleApplicationCommands = async ({
   intentObj,
-  clients,
+  ctx,
   commands,
 }: {
   intentObj: ApplicationCommandObj;
-  clients: InternalContext;
+  ctx: InternalContext;
   commands: {
     commandName: string;
     handler: (args: {
       intentObj: ApplicationCommandObj;
-      clients: InternalContext;
+      ctx: InternalContext;
     }) => Promise<{
       type: number;
       data: unknown;
@@ -30,7 +30,7 @@ export const handleApplicationCommands = async ({
     if (command.commandName === intentObj.data?.name) {
       return command.handler({
         intentObj,
-        clients,
+        ctx,
       });
     }
   }
