@@ -5,7 +5,7 @@ import { DiscordClient } from "@/clients/discord";
 
 export const inject = createMiddleware<HonoConfig>(async (c, next) => {
   if (!c.get("openai")) {
-    const client = new OpenAI({ apiKey: c.env.OPENAI_API_KEY });
+    const client = new OpenAI({ apiKey: c.env.OPENAI_API_KEY,baseURL: c.env.AI_GATEWAY_URL });
     c.set("openai", client);
   }
 

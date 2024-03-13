@@ -2,8 +2,7 @@ import { APIInteractionResponseChannelMessageWithSource } from "discord-api-type
 import { ApplicationCommandObj } from "@/interactions/handleApplicationCommands";
 import { InternalContext } from "@/config";
 import { WIRED_JAPANESE_SYSTEM_PROMPT } from "kotobade-asobou";
-import { getContentCache, putContentCache } from "@/kv";
-import { buildAIResponse } from "@/responses/AIResponse";
+import { buildAIResponse } from "@/responses/aiResponse";
 import { AYASII_COMMAND_NAME } from "@/constants";
 
 const handler = async ({
@@ -13,19 +12,7 @@ const handler = async ({
   intentObj: ApplicationCommandObj;
   ctx: InternalContext;
 }): Promise<APIInteractionResponseChannelMessageWithSource> => {
-  const cachedText = await getContentCache({
-    command: AYASII_COMMAND_NAME,
-    text: (intentObj.data as any).options[0].value,
-    ctx,
-  });
-
-  if (cachedText) {
-    return buildAIResponse({
-      original: (intentObj.data as any).options[0].value,
-      response: String(cachedText),
-    });
-  }
-
+ 
   const chatCompletion = await ctx.openai.chat.completions.create({
     messages: [
       { role: "system", content: WIRED_JAPANESE_SYSTEM_PROMPT },
@@ -38,15 +25,6 @@ const handler = async ({
     ],
     model: "gpt-4-turbo-preview",
   });
-
-  if (chatCompletion.choices[0].message.content) {
-    await putContentCache({
-      command: AYASII_COMMAND_NAME,
-      original: (intentObj.data as any)?.options[0].value,
-      text: chatCompletion.choices[0].message.content,
-      ctx,
-    });
-  }
 
   return buildAIResponse({
     original: (intentObj.data as any).options[0].value,

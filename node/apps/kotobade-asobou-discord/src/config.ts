@@ -12,6 +12,7 @@ export interface HonoConfig {
     KOTOBADE_ASOBOU: R2Bucket;
     OPENAI_API_KEY: string;
     DISCORD_TOKEN: string;
+    AI_GATEWAY_URL: string;
   };
   Variables: {
     openai: OpenAI;

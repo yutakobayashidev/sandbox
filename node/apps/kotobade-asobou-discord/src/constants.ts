@@ -11,4 +11,5 @@ export const KATAKANA_COMMAND_NAME = "katakana";
 export const KEIGO_COMMAND_NAME = "keigo";
 
 export const SYOGAKUSE_COMMAND_NAME = "syogakuse";
+
 export const WORDORDER_COMMAND_NAME = "wordorder";

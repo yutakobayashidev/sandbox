@@ -3,8 +3,7 @@ import { ApplicationCommandObj } from "@/interactions/handleApplicationCommands"
 import { InternalContext } from "@/config";
 import { KEIGO_SYSTEM_PROMPT } from "kotobade-asobou";
 import { KEIGO_COMMAND_NAME } from "@/constants";
-import { getContentCache, putContentCache } from "@/kv";
-import { buildAIResponse } from "@/responses/AIResponse";
+import { buildAIResponse } from "@/responses/aiResponse";
 
 const handler = async ({
   intentObj,
@@ -12,20 +11,8 @@ const handler = async ({
 }: {
   intentObj: ApplicationCommandObj;
   ctx: InternalContext;
-}): Promise<APIInteractionResponseChannelMessageWithSource> => {
-  const cachedText = await getContentCache({
-    command: KEIGO_COMMAND_NAME,
-    text: (intentObj.data as any).options[0].value,
-    ctx,
-  });
-
-  if (cachedText) {
-    return buildAIResponse({
-      original: (intentObj.data as any).options[0].value,
-      response: String(cachedText),
-    });
-  }
-
+  }): Promise<APIInteractionResponseChannelMessageWithSource> => {
+  
   const chatCompletion = await ctx.openai.chat.completions.create({
     messages: [
       { role: "system", content: KEIGO_SYSTEM_PROMPT },
@@ -38,15 +25,6 @@ const handler = async ({
     ],
     model: "gpt-4-turbo-preview",
   });
-
-  if (chatCompletion.choices[0].message.content) {
-    await putContentCache({
-      command: KEIGO_COMMAND_NAME,
-      original: (intentObj.data as any)?.options[0].value,
-      text: chatCompletion.choices[0].message.content,
-      ctx,
-    });
-  }
 
   return buildAIResponse({
     original: (intentObj.data as any).options[0].value,
