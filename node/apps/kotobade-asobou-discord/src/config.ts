@@ -4,7 +4,6 @@ import { DiscordClient } from "@/clients/discord";
 export type InternalContext = {
   openai: OpenAI;
   discord: DiscordClient;
-  kv: R2Bucket;
 };
 
 export interface HonoConfig {
