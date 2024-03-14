@@ -1,0 +1,18 @@
+{
+  "main": "main.js",
+  "scripts": {
+    "textlint": "textlint \"*.md\""
+  },
+  "dependencies": {
+    "discord.js-selfbot-v13": "^2.9.18",
+    "dotenv": "^16.3.1",
+    "textlint-rule-ja-joyo-or-jinmeiyo-kanji": "^1.0.3"
+  },
+  "devDependencies": {
+    "textlint": "^12.2.4",
+    "textlint-filter-rule-allowlist": "^4.0.0",
+    "textlint-filter-rule-comments": "^1.2.2",
+    "textlint-rule-preset-ja-spacing": "^2.2.0",
+    "textlint-rule-preset-ja-technical-writing": "^7.0.0"
+  }
+}

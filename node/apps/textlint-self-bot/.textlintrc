@@ -1,0 +1,46 @@
+{
+    "rules": {
+        "ja-joyo-or-jinmeiyo-kanji": true,
+        "preset-ja-technical-writing": {
+            "arabic-kanji-numbers": true,
+            "ja-no-successive-word": {
+                "allow": [
+                    "〇",
+                    "△"
+                ]
+            },
+            "max-kanji-continuous-len": {
+                "max": 6
+            },
+            "ja-no-abusage": true,
+            "no-exclamation-question-mark": false,
+            "ja-no-weak-phrase": false,
+            "no-doubled-joshi": {
+                "strict": false,
+                "allow": [
+                    "か"
+                ]
+            }
+        },
+        "preset-ja-spacing": {
+            "ja-space-between-half-and-full-width": {
+                "space": "always",
+                "exceptPunctuation": true
+            },
+            "ja-space-around-code": {
+                "before": true,
+                "after": true
+            }
+        },
+        "ja-technical-writing/ja-no-mixed-period": false,
+        "ja-technical-writing/sentence-length": false
+    },
+    "filters": {
+        "comments": true,
+        "allowlist": {
+            "allow": [
+                "/\\$\\$[\\s\\S]*?\\$\\$/m"
+            ]
+        }
+    }
+}
