@@ -8,7 +8,6 @@ export type InternalContext = {
 
 export interface HonoConfig {
   Bindings: {
-    KOTOBADE_ASOBOU: R2Bucket;
     OPENAI_API_KEY: string;
     DISCORD_TOKEN: string;
     AI_GATEWAY_URL: string;
