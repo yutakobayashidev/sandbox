@@ -19,7 +19,6 @@ export const inject = createMiddleware<HonoConfig>(async (c, next) => {
     const internal = {
       openai: c.get("openai"),
       discord: c.get("discord"),
-      kv: c.env.KOTOBADE_ASOBOU,
     };
     c.set("internal", internal);
   }
