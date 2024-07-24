@@ -10,6 +10,7 @@ export interface HonoConfig {
   Bindings: {
     OPENAI_API_KEY: string;
     DISCORD_TOKEN: string;
+    DISCORD_APPLICATION_ID: string;
     AI_GATEWAY_URL: string;
   };
   Variables: {
