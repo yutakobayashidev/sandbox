@@ -1,0 +1,27 @@
+{
+  "name": "tiny-lucia-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/server.ts"
+  },
+  "dependencies": {
+    "@lucia-auth/adapter-prisma": "^4.0.1",
+    "@prisma/client": "^5.17.0",
+    "arctic": "^1.9.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.19.2",
+    "lucia": "^3.2.0",
+    "oslo": "^1.2.1",
+    "prisma": "^5.17.0",
+    "tsx": "^3.13.0"
+  },
+  "devDependencies": {
+    "@types/cookie-parser": "^1.4.7",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "typescript": "^5.5.4"
+  }
+}
